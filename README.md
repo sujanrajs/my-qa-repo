@@ -24,14 +24,12 @@ backend/
 │   │   │   ├── auth.controller.test.ts.snap
 │   │   │   └── profile.controller.test.ts.snap
 │   │   ├── profile.controller.ts # Profile logic (get, update)
-│   │   ├── profile.controller.test.ts # Unit tests for profile controller
-│   │   └── validation.test.ts   # Validation tests for controllers
+│   │   └── profile.controller.test.ts # Unit tests for profile controller
 │   ├── middleware/
 │   │   ├── auth.middleware.ts   # Authentication middleware
 │   │   ├── auth.middleware.test.ts # Unit tests for auth middleware
-│   │   ├── __snapshots__/       # Snapshot files for middleware tests
-│   │   │   └── auth.middleware.test.ts.snap
-│   │   └── error-handling.test.ts # Error handling middleware tests
+│   │   └── __snapshots__/       # Snapshot files for middleware tests
+│   │       └── auth.middleware.test.ts.snap
 │   ├── database/
 │   │   ├── db.ts                # Database helper functions
 │   │   ├── db.test.ts           # Unit tests for database functions
@@ -41,6 +39,7 @@ backend/
 │   ├── test/                    # Integration and API tests
 │   │   ├── integration-helpers.ts # Test helpers and utilities
 │   │   ├── integration.test.ts # Integration tests (API endpoints with database)
+│   │   ├── error-handling.test.ts # Error handling integration tests (Express error handling)
 │   │   ├── performance.test.ts # Performance tests (response time, load, stress)
 │   │   └── security.test.ts     # Security tests (auth bypass, token validation)
 │   ├── utils/
@@ -201,11 +200,12 @@ frontend/
     - Snapshots capture API response structures, user objects, and data transformations
     - Update snapshots with `vitest -u` when changes are intentional
   - **Integration tests** (`src/test/integration.test.ts`) - Test API endpoints with database
+  - **Error handling tests** (`src/test/error-handling.test.ts`) - Test Express error handling (malformed JSON, content-type, body size limits)
   - **Performance tests** (`src/test/performance.test.ts`) - Test response times, load, and stress testing
   - **Security tests** (`src/test/security.test.ts`) - Test authentication bypass, token validation, input sanitization
   - **Test helpers** (`src/test/integration-helpers.ts`) - Shared utilities for integration tests
   - Vitest config in root, unit tests co-located with source files
-  - Integration/performance/security tests in `src/test/` folder
+  - Integration/error-handling/performance/security tests in `src/test/` folder
 
 ### Frontend:
 - **App**: Main App component with routing
@@ -285,6 +285,17 @@ frontend/
   - End-to-end API functionality within backend
 - **Test Helpers**: `src/test/integration-helpers.ts` provides shared utilities
 - **Benefits**: Verify API works correctly with database, catch integration issues
+
+#### Error Handling Tests (`src/test/error-handling.test.ts`)
+- **Purpose**: Test Express-level error handling and request parsing
+- **Location**: `src/test/error-handling.test.ts`
+- **What they test**:
+  - Malformed JSON in request body
+  - Invalid content-type handling
+  - Body size limits
+  - Invalid data types
+  - Express error middleware behavior
+- **Benefits**: Ensure robust error handling at the Express level, catch parsing issues
 
 #### Performance Tests (`src/test/performance.test.ts`)
 - **Purpose**: Test API performance under various conditions
@@ -548,8 +559,10 @@ frontend/
 - `npm run test:coverage` - Run tests with coverage report
 - `npm run test:unit` - Run unit tests only
 - `npm run test:integration` - Run integration tests
+- `npm run test:error-handling` - Run error handling tests
 - `npm run test:performance` - Run performance tests
 - `npm run test:security` - Run security tests
+- `npm run test:validation` - Run validation utility tests
 
 ### Frontend Scripts
 - `npm run dev` - Start Vite development server
