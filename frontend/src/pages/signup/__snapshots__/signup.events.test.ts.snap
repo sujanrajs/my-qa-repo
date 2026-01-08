@@ -1,0 +1,14 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`signup.events > handleSignup > should call authService.signup with user data 1`] = `
+{
+  "token": "test-token",
+  "user": {
+    "email": "test@example.com",
+    "id": "1",
+    "name": "Test User",
+  },
+}
+`;
+
+exports[`signup.events > handleSignup > should propagate errors from authService.signup 1`] = `[Error: Email already exists]`;

@@ -1,0 +1,14 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`login.events > handleLogin > should call authService.login with credentials 1`] = `
+{
+  "token": "test-token",
+  "user": {
+    "email": "test@example.com",
+    "id": "1",
+    "name": "Test User",
+  },
+}
+`;
+
+exports[`login.events > handleLogin > should propagate errors from authService.login 1`] = `[Error: Invalid credentials]`;

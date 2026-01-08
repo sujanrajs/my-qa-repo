@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`profile.events > handleLogout > should propagate errors from authService.logout 1`] = `[Error: Logout failed]`;
+
+exports[`profile.events > handleUpdateProfile > should call authService.updateProfile with updates 1`] = `
+{
+  "email": "test@example.com",
+  "id": "1",
+  "name": "Updated Name",
+}
+`;
+
+exports[`profile.events > handleUpdateProfile > should propagate errors from authService.updateProfile 1`] = `[Error: Update failed]`;

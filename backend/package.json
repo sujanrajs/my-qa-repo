@@ -1,0 +1,47 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "nodemon --exec ts-node src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:unit": "vitest run src/controllers src/middleware src/database src/routes",
+    "test:integration": "vitest run src/test/integration.test.ts",
+    "test:performance": "vitest run src/test/performance.test.ts",
+    "test:controllers": "vitest run src/controllers",
+    "test:middleware": "vitest run src/middleware",
+    "test:database": "vitest run src/database",
+    "test:routes": "vitest run src/routes",
+    "test:validation": "vitest run src/controllers/validation.test.ts",
+    "test:error-handling": "vitest run src/middleware/error-handling.test.ts",
+    "test:security": "vitest run src/test/security.test.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "zod": "^4.3.5"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^25.0.3",
+    "@types/supertest": "^6.0.2",
+    "@vitest/coverage-v8": "^2.1.8",
+    "nodemon": "^3.1.11",
+    "supertest": "^7.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3",
+    "vitest": "^2.1.8"
+  }
+}

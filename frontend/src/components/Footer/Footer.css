@@ -1,0 +1,19 @@
+.footer {
+  background-color: #f8f9fa;
+  border-top: 1px solid #dee2e6;
+  padding: 20px;
+  margin-top: auto;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer-text {
+  margin: 0;
+  color: #495057; /* Darker gray for better contrast (4.5:1 on #f8f9fa) */
+  font-size: 14px;
+}
+
