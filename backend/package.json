@@ -17,8 +17,8 @@
     "test:middleware": "vitest run src/middleware",
     "test:database": "vitest run src/database",
     "test:routes": "vitest run src/routes",
-    "test:validation": "vitest run src/controllers/validation.test.ts",
-    "test:error-handling": "vitest run src/middleware/error-handling.test.ts",
+    "test:validation": "vitest run src/utils/validation.test.ts",
+    "test:error-handling": "vitest run src/test/error-handling.test.ts",
     "test:security": "vitest run src/test/security.test.ts"
   },
   "keywords": [],

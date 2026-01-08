@@ -1,9 +1,9 @@
 import { describe, it, expect, beforeEach, afterEach, afterAll } from 'vitest';
 import request from 'supertest';
 import express, { Express } from 'express';
-import { createTestApp } from '../test/integration-helpers';
-import { setupTestDatabase, clearTestDatabase, teardownTestDatabase } from '../test/db-test-helper';
-import { resetTestCounter } from '../test/test-data-factory';
+import { createTestApp } from './integration-helpers';
+import { setupTestDatabase, clearTestDatabase, teardownTestDatabase } from './db-test-helper';
+import { resetTestCounter } from './test-data-factory';
 import * as db from '../database/db';
 
 describe('Error Handling Edge Cases', () => {
@@ -24,14 +24,16 @@ describe('Error Handling Edge Cases', () => {
   });
 
   describe('Malformed JSON in Request Body', () => {
-    it('should handle malformed JSON in request body', async () => {
+    it('should handle valid JSON string in request body', async () => {
+      // Note: This test verifies that valid JSON strings are parsed correctly
+      // Actual malformed JSON tests are below
       const response = await request(app)
         .post('/api/auth/register')
         .set('Content-Type', 'application/json')
         .send('{"email": "test@test.com", "password": "123", "name": "Test"}') // Valid JSON string
         .expect((res) => {
           // Express JSON parser will parse this correctly
-          // Malformed JSON would be: '{"email": "test@test.com"' (incomplete)
+          // May return 400 due to validation (password too short) or 201 if valid
           expect([200, 201, 400, 500]).toContain(res.status);
         });
 

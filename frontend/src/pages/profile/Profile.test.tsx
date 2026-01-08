@@ -1,6 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render } from '@testing-library/react';
-import { screen, waitFor } from '@testing-library/dom';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { BrowserRouter } from 'react-router-dom';
 import { Profile } from './Profile';
@@ -517,11 +516,10 @@ describe('Profile', () => {
       });
 
       const user = userEvent.setup();
-      const nameInput = screen.getByLabelText(/name/i);
       const emailInput = screen.getByLabelText(/email/i);
       const updateButton = screen.getByRole('button', { name: /update profile/i });
 
-      // Clear email but keep name
+      // Clear email but keep name (name field is not modified in this test)
       await user.clear(emailInput);
       await user.tab(); // Blur to trigger validation
 

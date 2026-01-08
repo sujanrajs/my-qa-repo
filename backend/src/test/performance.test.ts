@@ -371,7 +371,8 @@ describe('Performance Tests', () => {
 
       const times: number[] = [];
 
-      // Measure 10 profile read operations (faster and more consistent than login)
+      // Register a user and get token for profile read operations
+      // Profile reads are faster and more consistent than login for performance testing
       const registerResponse = await request(app)
         .post('/api/auth/register')
         .send({
@@ -382,6 +383,8 @@ describe('Performance Tests', () => {
         .expect(201);
 
       const token = registerResponse.body.token;
+
+      // Measure 10 profile read operations
 
       for (let i = 0; i < 10; i++) {
         const startTime = Date.now();
